@@ -13,6 +13,10 @@ export function useEvents() {
     saveEvents(events);
   }, [events]);
 
+  const reloadEvents = useCallback(() => {
+    setEvents(loadEvents());
+  }, []);
+
   const addEvent = useCallback((eventData) => {
     const newEvent = {
       id: generateId(),
@@ -38,5 +42,5 @@ export function useEvents() {
     setEvents((prev) => prev.filter((e) => e.id !== id));
   }, []);
 
-  return { events, addEvent, updateEvent, deleteEvent };
+  return { events, addEvent, updateEvent, deleteEvent, reloadEvents };
 }

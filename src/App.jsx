@@ -8,7 +8,7 @@ import { useEvents } from './hooks/useEvents';
 import { DAY_ABBR, MONTH_NAMES } from './utils/dateUtils';
 
 export default function App() {
-  const { events, addEvent, updateEvent, deleteEvent } = useEvents();
+  const { events, addEvent, updateEvent, deleteEvent, reloadEvents } = useEvents();
   const [view, setView] = useState('month');
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [viewYear, setViewYear] = useState(new Date().getFullYear());
@@ -67,7 +67,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <Header />
+      <Header reloadEvents={reloadEvents} />
 
       <div className="app-body">
         <Sidebar events={events} onEventClick={openEdit} />
